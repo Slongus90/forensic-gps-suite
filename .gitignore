@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.env
+.venv/
+venv/
+dist/
+build/
+*.csv
+*.sqlite
+*.db
+output/
+reports/
+.idea/
+.vscode/
