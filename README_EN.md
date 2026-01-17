@@ -1,11 +1,8 @@
-## README.md (English)
-
-
 # Forensic GPS & Timeline Analysis Suite
 
-This project performs forensic analysis of GPS and timestamp data extracted from
+This project supports forensic analysis of GPS and timestamp data extracted from
 photo and video files (EXIF / QuickTime), with emphasis on **court-admissible,
-reproducible results**.
+reproducible documentation**.
 
 Core principles:
 - conservative timeline reconstruction
@@ -29,6 +26,33 @@ Core principles:
   - optional interactive map (non-court mode only)
 - Optional SHA256 hashing & evidence manifest
 
+## Requirements
+
+- Python 3.9+
+- [ExifTool](https://exiftool.org/) available in `PATH`
+- Optional conveniences:
+  - `tqdm` (progress display)
+  - `folium` (interactive map)
+  - `psutil` (memory and process details)
+
+## Quick start
+
+```bash
+python3 gps_forensic.py \
+  --sd "/path/to/evidence" \
+  --od "/path/to/output" \
+  --court \
+  --sha256
+```
+
+## Output Files
+
+* `timeline.csv` – chronological timeline
+* `movement_report.csv` – movement analysis
+* `gaps_report.csv` – detected temporal gaps
+* `evidence_manifest.csv` – file hashes (optional)
+* `forensic_audit.log` – full audit log
+
 ## Court Mode
 
 When running with `--court`:
@@ -38,24 +62,6 @@ When running with `--court`:
 - only verifiable, raw evidence data
 
 This mode is intended for legal proceedings.
-
-## Example
-
-```bash
-python3 gps_forensic.py \
-  --sd "/path/to/evidence" \
-  --od "/path/to/output" \
-  --court \
-  --sha256
-````
-
-## Output Files
-
-* timeline.csv – chronological timeline
-* movement_report.csv – movement analysis
-* gaps_report.csv – detected temporal gaps
-* evidence_manifest.csv – file hashes (optional)
-* forensic_audit.log – full audit log
 
 ## Forensic Principles
 
@@ -67,5 +73,3 @@ python3 gps_forensic.py \
 
 This tool assists forensic analysis but **does not replace legal evaluation
 or certified expert testimony**.
-
-```
