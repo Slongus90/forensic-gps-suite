@@ -1,10 +1,7 @@
-## README.md (Deutsch)
-
-
 # Forensic GPS & Timeline Analysis Suite
 
-Dieses Projekt dient der forensischen Analyse von GPS- und Zeitdaten aus Foto- und Videodateien
-(EXIF/QuickTime), mit dem Ziel einer **gerichtsfesten, reproduzierbaren Dokumentation**.
+Dieses Projekt unterstützt die forensische Analyse von GPS- und Zeitdaten aus Foto- und Videodateien
+(EXIF/QuickTime) mit dem Ziel **gerichtsfester, reproduzierbarer Dokumentation**.
 
 Der Fokus liegt auf:
 - konservativer Zeitachsenrekonstruktion
@@ -28,6 +25,33 @@ Der Fokus liegt auf:
   - optionale interaktive Karte (nur außerhalb Court-Mode)
 - Optional: SHA256-Hashing & Beweis-Manifest
 
+## Voraussetzungen
+
+- Python 3.9+
+- [ExifTool](https://exiftool.org/) im `PATH`
+- Optional für Komfortfunktionen:
+  - `tqdm` (Fortschrittsanzeige)
+  - `folium` (interaktive Karte)
+  - `psutil` (Speicher- und Prozessdaten)
+
+## Schnellstart
+
+```bash
+python3 gps_forensic.py \
+  --sd "/pfad/zum/material" \
+  --od "/pfad/zum/output" \
+  --court \
+  --sha256
+```
+
+## Output-Struktur
+
+* `timeline.csv` – chronologische Zeitachse
+* `movement_report.csv` – Bewegungsanalyse
+* `gaps_report.csv` – erkannte Zeitlücken
+* `evidence_manifest.csv` – Hashwerte (optional)
+* `forensic_audit.log` – vollständiges Audit-Log
+
 ## Court-Mode (Gerichtsmodus)
 
 Bei Aktivierung von `--court` gilt:
@@ -37,24 +61,6 @@ Bei Aktivierung von `--court` gilt:
 - nur belegbare, prüfbare Daten
 
 Dieser Modus ist für gerichtliche Verfahren vorgesehen.
-
-## Beispielaufruf
-
-```bash
-python3 gps_forensic.py \
-  --sd "/pfad/zum/material" \
-  --od "/pfad/zum/output" \
-  --court \
-  --sha256
-````
-
-## Output-Struktur
-
-* timeline.csv – chronologische Zeitachse
-* movement_report.csv – Bewegungsanalyse
-* gaps_report.csv – erkannte Zeitlücken
-* evidence_manifest.csv – Hashwerte (optional)
-* forensic_audit.log – vollständiges Audit-Log
 
 ## Forensische Grundsätze
 
@@ -66,6 +72,3 @@ python3 gps_forensic.py \
 
 Dieses Tool unterstützt forensische Analysen, ersetzt jedoch **keine rechtliche Bewertung
 oder sachverständige Begutachtung**.
-
-````
-
